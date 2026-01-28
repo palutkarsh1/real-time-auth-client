@@ -11,6 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { API_URL } from './config';
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ function Signup() {
         e.preventDefault(); // Prevent page reload
 
         // Call the Backend API
-        const response = await fetch('http://localhost:3001/signup', {
+        const response = await fetch(`${API_URL}/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

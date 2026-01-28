@@ -11,6 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { API_URL } from './config';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function Login() {
 
         // STEP 14: FETCH + CREDENTIALS EXPLAINED
         // We use 'fetch' to talk to the backend.
-        const response = await fetch('http://localhost:3001/login', {
+        const response = await fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

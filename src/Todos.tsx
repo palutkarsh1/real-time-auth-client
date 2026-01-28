@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button" // Shadcn UI Button
 import { Input } from "@/components/ui/input"   // Shadcn UI Input
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card" // Shadcn UI Card
 import { Trash2, LogOut, Plus, Laptop, Smartphone } from "lucide-react" // Icons
+import { API_URL } from './config';
 
 // TYPES: Define what our data looks like (TypeScript)
 interface Todo {
@@ -35,7 +36,7 @@ function Todos() {
         try {
             // credentials: 'include' is CRITICAL!
             // It sends the cookie ("Wristband") to the server.
-            const response = await fetch('http://localhost:3001/todos', {
+            const response = await fetch(`${API_URL}/todos`, {
                 credentials: 'include',
             });
 
@@ -55,7 +56,7 @@ function Todos() {
     // 2. FETCH ACTIVE SESSIONS
     const fetchSessions = async () => {
         try {
-            const response = await fetch('http://localhost:3001/sessions', {
+            const response = await fetch(`${API_URL}/sessions`, {
                 credentials: 'include',
             });
             const data = await response.json();
@@ -71,7 +72,7 @@ function Todos() {
         if (!newTask) return;
 
         try {
-            const response = await fetch('http://localhost:3001/todos', {
+            const response = await fetch(`${API_URL}/todos`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -91,7 +92,7 @@ function Todos() {
     // 4. DELETE TODO
     const handleDelete = async (id: number) => {
         try {
-            const response = await fetch(`http://localhost:3001/todos/${id}`, {
+            const response = await fetch(`${API_URL}/todos/${id}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });
@@ -108,7 +109,7 @@ function Todos() {
     // 5. REVOKE SESSION (Logout another device)
     const handleRevokeSession = async (sessionId: string) => {
         try {
-            const response = await fetch('http://localhost:3001/sessions/revoke', {
+            const response = await fetch(`${API_URL}/sessions/revoke`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -126,7 +127,7 @@ function Todos() {
     // 6. LOGOUT (Current device)
     const handleLogout = async () => {
         try {
-            await fetch('http://localhost:3001/logout', {
+            await fetch(`${API_URL}/logout`, {
                 method: 'POST',
                 credentials: 'include',
             });
